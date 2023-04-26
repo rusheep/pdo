@@ -19,15 +19,15 @@
 
     echo $account = $_POST["Account"];
     echo $pwd = $_POST["PWD"];
-    echo $Permissions = $_POST["Permissions"];
+    echo $permissions = $_POST["permissions"];
 
-    $sql = "INSERT INTO member(Account, PWD, Permissions , CreateDate) VALUES (:account, :pwd, :Permissions, NOW())";
+    $sql = "INSERT INTO member(Account, PWD, permissions, CreateDate) VALUES (:account, :pwd, :permissions, NOW())";
 
     $stmt = $pdo->prepare($sql);
 
     $stmt->bindParam(':account', $account);
     $stmt->bindParam(':pwd', $pwd);
-    $stmt->bindParam(':Permissions', $Permissions);
+    $stmt->bindParam(':permissions', $permissions);
     $stmt->execute();
 
 

@@ -27,7 +27,7 @@
 
 
        //建立SQL語法
-       $sql = "SELECT * FROM member WHERE Account = :account AND PWD = :pwd";
+       $sql = "SELECT Account,permissions FROM member WHERE Account = :account AND PWD = :pwd";
        $stmt = $pdo->prepare($sql);
        $stmt->bindParam(":account" , $account); 
        $stmt->bindParam(":pwd" , $pwd); 
@@ -38,20 +38,31 @@
 
        if($num > 0){
          //登入成功，設定SESSION變數
-              echo 1;
+              // echo 1;
               $_SESSION["login"] = true;
               $_SESSION["account"] = $account;
 
               $result = $stmt->fetch(PDO::FETCH_ASSOC);
+              $status = array("status" => "true");
+              $message =  array("message" => "登入成功");
+              $result = array_merge($result, $status,$message);
+
+
 
               $json_results = json_encode($result);
+
               echo $json_results;
 
        } else {
          //登入失敗，顯示錯誤訊息
-              echo 0;
-              $errorMsg = "帳號或密碼錯誤，請重新輸入";
+              
+              $status = array("status" => "false");
+              $message =  array("message" => "登入失敗");
+              $result = array_merge($status,$message);
 
+
+              $json_results = json_encode($result);
+              echo $json_results;
        }
 
 ?>

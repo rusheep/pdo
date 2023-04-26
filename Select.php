@@ -29,7 +29,7 @@
 	       echo " / ";
 	       echo $row["PWD"];    //欄位名稱
 	       echo " / ";
-              echo $row["Permissions"];    //欄位名稱
+              echo $row["permissions"];    //欄位名稱
               echo "<br>";
 	       echo $row["CreateDate"];    //欄位名稱
               echo "<br>";
