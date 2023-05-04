@@ -16,7 +16,9 @@
 
        //---------------------------------------------------
 
-
+        $data = file_get_contents("php://input");
+        // echo "這是php接收到的資料" .$data;
+        $data_arr = json_decode($data, true);
 
         //建立SQL語法
         $sql = "SELECT * FROM member";

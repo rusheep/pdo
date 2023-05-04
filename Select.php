@@ -21,18 +21,23 @@
        $statement = $pdo->query($sql);
 
        //抓出全部且依照順序封裝成一個二維陣列
-       $data = $statement->fetchAll();
+       // $data = $statement->fetchAll();
+       $data = $statement->fetchAll(PDO::FETCH_ASSOC);
 
+       $json_results = json_encode($data);
+
+       echo $json_results;
        //將二維陣列取出顯示其值
-       foreach($data as $index => $row){
-	       echo $row["Account"];   //欄位名稱
-	       echo " / ";
-	       echo $row["PWD"];    //欄位名稱
-	       echo " / ";
-              echo $row["permissions"];    //欄位名稱
-              echo "<br>";
-	       echo $row["CreateDate"];    //欄位名稱
-              echo "<br>";
-       }
+
+       // foreach($data as $index => $row){
+	//        echo $row["Account"];   //欄位名稱
+
+	//        echo $row["PWD"];    //欄位名稱
+
+       //        echo $row["permissions"];    //欄位名稱
+
+	//        echo $row["CreateDate"];    //欄位名稱
+
+       // }
 
 ?>
