@@ -17,9 +17,12 @@
     //建立SQL
 
 
-    echo $account = $_POST["Account"];
-    echo $pwd = $_POST["PWD"];
-    echo $permissions = $_POST["permissions"];
+    echo $account =htmlspecialchars( $_POST["Account"]);
+    echo $pwd = htmlspecialchars( $_POST["PWD"]);
+    echo $permissions = htmlspecialchars($_POST["permissions"]);
+
+    // $account = htmlspecialchars($account);
+    // $pwd = htmlspecialchars($pwd);
 
     $sql = "INSERT INTO member(Account, PWD, permissions, CreateDate) VALUES (:account, :pwd, :permissions, NOW())";
 

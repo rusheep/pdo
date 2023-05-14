@@ -2,17 +2,13 @@
 
         session_start();
 
-        //MySQL相關資訊
-        $db_host = "127.0.0.1";
-        $db_user = "root";
-        $db_pass = "yo0960797";
-        $db_select = "pdo";
+        // if(isset( $_SESSION["account"])){
 
-        //建立資料庫連線物件
-        $dsn = "mysql:host=".$db_host.";dbname=".$db_select.";charset=utf8";
+        // }else {
+        //     請先登入
+        // }
 
-        //建立PDO物件，並放入指定的相關資料
-        $pdo = new PDO($dsn, $db_user, $db_pass);
+        include('../connect/conn.php');
 
         //--------------------------------------------------
         
@@ -27,7 +23,7 @@
 
 
         //建立SQL語法
-        $sql = "SELECT Account,permissions FROM member WHERE Account = :account AND PWD = :pwd";
+        $sql = "SELECT ACCOUNT,PURVIEW_LEVEL_ID FROM BACKSTAGE_MEMBER WHERE ACCOUNT = :account AND PASSWORD = :pwd";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(":account" , $account); 
         $stmt->bindParam(":pwd" , $pwd); 
@@ -39,7 +35,7 @@
         if($num > 0){
             //登入成功，設定SESSION變數
                 // echo 1;
-                $_SESSION["login"] = true;
+                $_SESSION["status"] = true;
                 $_SESSION["account"] = $account;
 
                 $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -50,8 +46,8 @@
 
 
                 $json_results = json_encode($result);
-
                 echo $json_results;
+                // echo $_SESSION["login"];
 
         } else {
             //登入失敗，顯示錯誤訊息

@@ -60,7 +60,6 @@
               $message =  array("message" => "登入失敗");
               $result = array_merge($status,$message);
 
-
               $json_results = json_encode($result);
               echo $json_results;
        }

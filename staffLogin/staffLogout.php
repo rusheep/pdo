@@ -12,6 +12,7 @@
 
     // 銷毀 Session
     session_destroy();
+    session_unset();
 
     // $URL="login.html"; 
     // header("Location: $URL");
