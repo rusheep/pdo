@@ -1,14 +1,5 @@
 <?php
-
-        session_start();
-
-        // if(isset( $_SESSION["account"])){
-
-        // }else {
-        //     請先登入
-        // }
-
-        include('../connect/conn.php');
+        include('../Lib/conn.php');
 
         //--------------------------------------------------
         
@@ -34,31 +25,36 @@
 
         if($num > 0){
             //登入成功，設定SESSION變數
-                // echo 1;
-                $_SESSION["status"] = true;
-                $_SESSION["account"] = $account;
 
                 $result = $stmt->fetch(PDO::FETCH_ASSOC);
-                $status = array("status" => "true");
-                $message =  array("message" => "登入成功");
-                $result = array_merge($result, $status,$message);
+                $status = "true";
+                // $message =  array("message" => "登入成功");
+                // $result = array_merge($result, $status,$message);
+                $permissions = $result["PURVIEW_LEVEL_ID"];
+                // echo $permissions;
+                // $json_results = json_encode($result);
+                // echo $json_results;
 
-
-
-                $json_results = json_encode($result);
-                echo $json_results;
-                // echo $_SESSION["login"];
+                include("../Lib/MemberCheck.php");
+                 //將登入資訊寫入session
+                setSessionB($account,$permissions,$status);
+                // echo "登入成功";
+                // echo $_SESSION["BACKSTAGE_MEMBER"];
+                // echo $_SESSION["Permissions"];
+                echo $_SESSION["Status"];
 
         } else {
             //登入失敗，顯示錯誤訊息
             
-            $status = array("status" => "false");
-            $message =  array("message" => "登入失敗");
-            $result = array_merge($status,$message);
+            // $status = array("status" => "false");
+            // $message =  array("message" => "登入失敗");
+            // $result = array_merge($status,$message);
 
 
-            $json_results = json_encode($result);
-            echo $json_results;
+            // $json_results = json_encode($result);
+            // echo $json_results;
+
+            echo "登入失敗";
         }
 
 ?>

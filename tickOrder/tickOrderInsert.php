@@ -1,7 +1,7 @@
 <?php
 
-    include('../connect/conn.php'); 
-
+    
+    include('../Lib/conn.php');
     //---------------------------------------------------
 
     $data = file_get_contents("php://input");

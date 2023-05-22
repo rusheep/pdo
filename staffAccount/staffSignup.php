@@ -1,6 +1,6 @@
 <?php
 
-    include('../connect/conn.php'); 
+    include('../Lib/conn.php');
 
     //---------------------------------------------------
 
@@ -13,13 +13,6 @@
     $permissions = $data_arr['permissions'];
 
     //建立SQL
-
-
-    // SELECT *
-    // FROM monsterdb.TICK MT
-    // JOIN monsterdb.TICK_ORDER MTO ON MTO.TICK_ID = MT.TICK_ID
-    // JOIN monsterdb.MEMBER MM ON MM.MEMBER_ID = MTO.TICK_ORDER_ID;
-    
 
     $sql = "INSERT INTO BACKSTAGE_MEMBER (ACCOUNT, PASSWORD, PURVIEW_LEVEL_ID) VALUES (:account, :pwd, :permissions)";
 
