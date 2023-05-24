@@ -24,7 +24,14 @@
         }
 
         //有登入session->回傳ID，無登入session->回傳空字串""
-        return isset($_SESSION["BACKSTAGE_MEMBER"]) ? $_SESSION["BACKSTAGE_MEMBER"] : "";             
+        // return isset($_SESSION["BACKSTAGE_MEMBER"]) ? $_SESSION["BACKSTAGE_MEMBER"] : ""; 
+        if (isset($_SESSION["BACKSTAGE_MEMBER"]) && isset($_SESSION["Permissions"])) {
+            // 返回 $_SESSION["BACKSTAGE_MEMBER"] 和 $_SESSION["Permissions"] 的值
+            return array($_SESSION["BACKSTAGE_MEMBER"], $_SESSION["Permissions"]);
+        } else {
+            // 若其中一個或兩個 SESSION 變數不存在，則回傳空陣列
+            return '';
+        }            
 
     }
 

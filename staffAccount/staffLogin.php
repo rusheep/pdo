@@ -38,22 +38,9 @@
                 include("../Lib/MemberCheck.php");
                  //將登入資訊寫入session
                 setSessionB($account,$permissions,$status);
-                // echo "登入成功";
-                // echo $_SESSION["BACKSTAGE_MEMBER"];
-                // echo $_SESSION["Permissions"];
                 echo $_SESSION["Status"];
 
         } else {
-            //登入失敗，顯示錯誤訊息
-            
-            // $status = array("status" => "false");
-            // $message =  array("message" => "登入失敗");
-            // $result = array_merge($status,$message);
-
-
-            // $json_results = json_encode($result);
-            // echo $json_results;
-
             echo "登入失敗";
         }
 
