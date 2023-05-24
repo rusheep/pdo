@@ -11,14 +11,26 @@
         $data_arr = json_decode($data, true);
         // print_r($data_arr);
 
-        $memberId = $data_arr['deleteMemberData']['id'];
-        $account = $data_arr['deleteMemberData']['account'];
-        $permissions = $data_arr['deleteMemberData']['permissions'];
+        $memberId = $data_arr['changeMemberData']['id'];
+        $account = $data_arr['changeMemberData']['account'];
+        $password = $data_arr['changeMemberData']['password'];
+        $permissions = $data_arr['changeMemberData']['permissions'];
+        echo $memberId;
+        echo $account;
+        echo $password;
+        echo $permissions;
+
 
         // 建立SQL
-        $sql = "DELETE FROM monsterdb.BACKSTAGE_MEMBER WHERE BACKSTAGE_MEMBER_ID = :member_id";
+        $sql = "UPDATE monsterdb.BACKSTAGE_MEMBER
+        SET PURVIEW_LEVEL_ID = :permissions, ACCOUNT = :account, PASSWORD = :password
+        WHERE BACKSTAGE_MEMBER_ID = :member_id";
+
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':member_id', $memberId);
+        $stmt->bindParam(':account', $account);
+        $stmt->bindParam(':password', $password);
+        $stmt->bindParam(':permissions', $permissions);
         $stmt->execute();
 
 

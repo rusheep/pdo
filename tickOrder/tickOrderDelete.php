@@ -12,16 +12,12 @@
         // print_r($data_arr);
 
         $tickOrderId = $data_arr['deleteTicketsData']['id'];
-        // echo $tickOrderId ;
-        // $tickOrderId = $data_arr['id'];
-        // echo $tickOrderId;
+        //建立SQL
+        $sql = "DELETE FROM monsterdb.TICK_ORDER WHERE TICK_ORDER_ID = :tick_order_id";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':tick_order_id', $tickOrderId);
 
-        // //建立SQL
-        // $sql = "DELETE FROM monsterdb.TICK_ORDER WHERE TICK_ORDER_ID = :tick_order_id";
-        // $stmt = $pdo->prepare($sql);
-        // $stmt->bindParam(':tick_order_id', $tickOrderId);
-
-        // $stmt->execute();
+        $stmt->execute();
 
 
         // 回傳是否成功
