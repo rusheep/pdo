@@ -28,12 +28,7 @@
 
                 $result = $stmt->fetch(PDO::FETCH_ASSOC);
                 $status = "true";
-                // $message =  array("message" => "登入成功");
-                // $result = array_merge($result, $status,$message);
                 $permissions = $result["PURVIEW_LEVEL_ID"];
-                // echo $permissions;
-                // $json_results = json_encode($result);
-                // echo $json_results;
 
                 include("../Lib/MemberCheck.php");
                  //將登入資訊寫入session
