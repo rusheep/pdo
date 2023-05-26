@@ -2,7 +2,7 @@
         //MySQL相關資訊
         $db_host = "127.0.0.1";
         $db_user = "root";
-        $db_pass = "yo0960797";
+        $db_pass = "password";
         $db_select = "monsterdb";
 
         //建立資料庫連線物件

@@ -52,7 +52,7 @@
     //--------------------------------------前台專用--------------------------------------
 
     //取得會員ID(前台專用)
-    function getMemberID(){
+    function getMemberAccount(){
 
         //先判斷session是否存在
         if(!isset($_SESSION)){
@@ -60,7 +60,7 @@
         }
 
         //有登入session->回傳ID，無登入session->回傳空字串""
-        return isset($_SESSION["MemberID"]) ? $_SESSION["MemberID"] : ""; 
+        return isset($_SESSION["Account"]) ? $_SESSION["Account"] : ""; 
 
     }
 
