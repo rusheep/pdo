@@ -36,12 +36,11 @@ if ($num > 0) {
 
   $result = $stmt->fetch(PDO::FETCH_ASSOC);
   $status = "true";
-  $permissions = $result["PURVIEW_LEVEL_ID"];
 
 
-  include("../Lib/MemberCheck.php");
+  include("../../Lib/MemberCheck.php");
   //將登入資訊寫入session
-  setSessionB($account, $password, $status);
+  setSessionB($account, $pwd, $status);
   echo $_SESSION["Status"];
 } else {
   echo "登入失敗";
