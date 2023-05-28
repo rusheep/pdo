@@ -35,13 +35,13 @@ if ($num > 0) {
 
 
   $result = $stmt->fetch(PDO::FETCH_ASSOC);
-  $status = "true";
+  $_SESSION["status"] = "true";
 
 
   include("../../Lib/MemberCheck.php");
   //將登入資訊寫入session
   setMemberInfo($account,$pwd);
-  echo $_SESSION["Status"];
+  echo $_SESSION["status"];
   
 } else {
   echo "登入失敗";
