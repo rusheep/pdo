@@ -6,7 +6,7 @@ echo getMemberAccount();
 
 
 // 取得 session 檢查結果
-$result = getMemberAccount();
+$result = setMemberInfo($MemberID, $MemberName);
 
 
 // 將結果轉換為 JSON 格式

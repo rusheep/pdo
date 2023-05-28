@@ -40,8 +40,9 @@ if ($num > 0) {
 
   include("../../Lib/MemberCheck.php");
   //將登入資訊寫入session
-  setSessionB($account, $pwd, $status);
+  setMemberInfo($account,$pwd);
   echo $_SESSION["Status"];
+  
 } else {
   echo "登入失敗";
 }
