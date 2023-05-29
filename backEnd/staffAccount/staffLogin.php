@@ -30,7 +30,7 @@
                 $status = "true";
                 $permissions = $result["PURVIEW_LEVEL_ID"];
 
-                include("../Lib/MemberCheck.php");
+                include("../../Lib/MemberCheck.php");
                  //將登入資訊寫入session
                 setSessionB($account,$permissions,$status);
                 echo $_SESSION["Status"];
