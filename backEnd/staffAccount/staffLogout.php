@@ -1,5 +1,5 @@
 <?php
-    include("../Lib/MemberCheck.php");
+    include("../../Lib/MemberCheck.php");
 
     //清空session
     clearSession();

@@ -1,7 +1,8 @@
 <?php
 
     
-    include('../Lib/conn.php');
+    
+    include('../../Lib/conn.php');
     //---------------------------------------------------
 
     $data = file_get_contents("php://input");
@@ -9,10 +10,11 @@
 
     // 接收到的資料轉成json檔
     $data_arr = json_decode($data, true);
+    $bookingData = json_decode($data_arr['params']['bookingData'], true);
     // print_r($data_arr);
     // foreach跑json檔案中的每一筆資料
-    echo $data_arr['params']['ticketDate'];
-    foreach($data_arr['params']['bookingData'] as $booking) {
+    // echo $data_arr['params']['ticketDate'];
+    foreach($bookingData as $booking) {
         $tickType =  $booking['ticketType'];
         $tickNum =  $booking['ticketNum'];
         $tickFastPass = $booking['fastFoward'];
