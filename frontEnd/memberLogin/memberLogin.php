@@ -24,23 +24,19 @@ $stmt->execute();
 
 
 //檢查結果
-$num = $stmt->fetchAll(); // 函式返回結果集中行的數量
+// $num = $stmt->rowCount(); // 函式返回結果集中行的數量
+$num = $stmt->fetchAll();
 
+//3
+if (count($num) > 0) {
+  // // $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-
-if ($num > 0) {
-  //登入成功，設定SESSION變數
-
-
-  $result = $stmt->fetch(PDO::FETCH_ASSOC);
   $memberStatus = "true";
-
-
   include("../../Lib/MemberCheck.php");
-  //將登入資訊寫入session
-  setMemberInfo($account,$memberStatus);
-  echo $_SESSION["MemberStatus"];
-  
+  //   //將登入資訊寫入session
+  setMemberInfo($account, $memberStatus);
+  // echo $_SESSION["MemberStatus"];
+  echo "登入成功";
 } else {
   echo "登入失敗";
 }
