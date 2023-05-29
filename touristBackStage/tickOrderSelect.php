@@ -3,18 +3,28 @@
 
        //---------------------------------------------------
 
-       //建立SQL語法
-       $sql = "SELECT * 
-       FROM monsterdb.TICK MT
-       JOIN monsterdb.TICK_ORDER MTO ON MTO.TICK_ID = MT.TICK_ID
-       JOIN monsterdb.MEMBER MM ON MM.MEMBER_ID = MTO.TICK_ORDER_ID";
+       $account_id = 9;
+       $query1 = "SELECT * FROM monsterdb.ORDER WHERE MEMBER_ID = $account_id";
+       $result1 = $pdo->query($query1);
+       $orderIds = array();
 
-    
-        $statement = $pdo->query($sql);
+        while ($row = $result1->fetch(PDO::FETCH_ASSOC)) {
+        $orderIds[] = $row['ORDER_ID'];
+        };
 
-        $data = $statement->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($orderIds as $orderId) {
+                // echo "ORDER_ID: " . $orderId . "<br>";
+                // 可以在此處執行進一步的查詢，使用 $orderId 作為條件
 
-        $json_results = json_encode($data);
-
-        echo $json_results;
+                $orderIdsString = $orderId; // 使用當前的訂單 ID
+                $query2 = "SELECT * FROM TICK_ORDER WHERE ORDER_ID IN ($orderIdsString)";
+                $result2 = $pdo->query($query2);
+            
+                while ($row = $result2->fetch(PDO::FETCH_ASSOC)) {
+                        $rows[] = $row;
+                }
+                
+        };
+        
+        echo json_encode($rows);
 ?>
