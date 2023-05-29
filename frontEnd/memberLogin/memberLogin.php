@@ -12,13 +12,10 @@ $data_arr = json_decode($data, true);
 
 $account = $data_arr['account'];
 $pwd = $data_arr['pwd'];
-// echo $account;
-
-
 
 
 //建立SQL語法
-$sql = "SELECT ACCOUNT,PASSWORD FROM MEMBER
+$sql = "SELECT * FROM MEMBER
         WHERE ACCOUNT = :account AND PASSWORD = :pwd";
 $stmt = $pdo->prepare($sql);
 $stmt->bindParam(":account", $account);
@@ -27,7 +24,8 @@ $stmt->execute();
 
 
 //檢查結果
-$num = $stmt->rowCount(); // 函式返回結果集中行的數量
+$num = $stmt->fetchAll(); // 函式返回結果集中行的數量
+
 
 
 if ($num > 0) {
@@ -35,13 +33,13 @@ if ($num > 0) {
 
 
   $result = $stmt->fetch(PDO::FETCH_ASSOC);
-  $_SESSION["status"] = "true";
+  $memberStatus = "true";
 
 
   include("../../Lib/MemberCheck.php");
   //將登入資訊寫入session
-  setMemberInfo($account,$pwd);
-  echo $_SESSION["status"];
+  setMemberInfo($account,$memberStatus);
+  echo $_SESSION["MemberStatus"];
   
 } else {
   echo "登入失敗";
