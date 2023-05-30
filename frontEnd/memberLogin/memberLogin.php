@@ -16,7 +16,7 @@ $pwd = $data_arr['pwd'];
 
 //建立SQL語法
 $sql = "SELECT * FROM MEMBER
-        WHERE ACCOUNT = :account AND PASSWORD = :pwd";
+        WHERE (PHONE = :account or EMAIL =:account) AND PASSWORD = :pwd";
 $stmt = $pdo->prepare($sql);
 $stmt->bindParam(":account", $account);
 $stmt->bindParam(":pwd", $pwd);
