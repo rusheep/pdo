@@ -1,6 +1,6 @@
 <?php
 
-    include('../Lib/conn.php');
+    include('../../Lib/conn.php');
 
     //---------------------------------------------------
 
@@ -13,7 +13,7 @@
 
         $tickOrderId = $data_arr['deleteTicketsData']['id'];
         //建立SQL
-        $sql = "DELETE FROM monsterdb.TICK_ORDER WHERE TICK_ORDER_ID = :tick_order_id";
+        $sql = "DELETE FROM TICK_ORDER WHERE TICK_ORDER_ID = :tick_order_id";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':tick_order_id', $tickOrderId);
 

@@ -1,6 +1,7 @@
 <?php
 
-    include('../Lib/conn.php');
+    
+    include('../../Lib/conn.php');
 
     //---------------------------------------------------
 
@@ -37,7 +38,7 @@
         //建立SQL
 
 
-        $sql = "UPDATE monsterdb.TICK_ORDER SET TICK_ID = :tick_id, TICK_NUM = :tick_num, TICK_DATE = :tick_date, FAST_PASS1 = :fast_pass1, FAST_PASS2 = :fast_pass2, FAST_PASS3 = :fast_pass3, FAST_PASS4 = :fast_pass4, FAST_PASS5 = :fast_pass5, FAST_PASS6 = :fast_pass6 WHERE TICK_ORDER_ID = :id";
+        $sql = "UPDATE TICK_ORDER SET TICK_ID = :tick_id, TICK_NUM = :tick_num, TICK_DATE = :tick_date, FAST_PASS1 = :fast_pass1, FAST_PASS2 = :fast_pass2, FAST_PASS3 = :fast_pass3, FAST_PASS4 = :fast_pass4, FAST_PASS5 = :fast_pass5, FAST_PASS6 = :fast_pass6 WHERE TICK_ORDER_ID = :id";
 
 
 

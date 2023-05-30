@@ -1,7 +1,8 @@
 <?php
 
     
-    include('../Lib/conn.php');
+    
+    include('../../Lib/conn.php');
     //---------------------------------------------------
 
     $data = file_get_contents("php://input");
@@ -9,10 +10,11 @@
 
     // 接收到的資料轉成json檔
     $data_arr = json_decode($data, true);
+    $bookingData = json_decode($data_arr['params']['bookingData'], true);
     // print_r($data_arr);
     // foreach跑json檔案中的每一筆資料
-    echo $data_arr['params']['ticketDate'];
-    foreach($data_arr['params']['bookingData'] as $booking) {
+    // echo $data_arr['params']['ticketDate'];
+    foreach($bookingData as $booking) {
         $tickType =  $booking['ticketType'];
         $tickNum =  $booking['ticketNum'];
         $tickFastPass = $booking['fastFoward'];
@@ -57,7 +59,7 @@
     //     //建立SQL
 
 
-    //     $sql = "INSERT INTO monsterdb.TICK_ORDER (MEMBER_ID, TICK_ID, TICK_NUM,TICK_DATE,FAST_PASS1,FAST_PASS2,FAST_PASS3,FAST_PASS4,FAST_PASS5,FAST_PASS6)
+    //     $sql = "INSERT INTO TICK_ORDER (MEMBER_ID, TICK_ID, TICK_NUM,TICK_DATE,FAST_PASS1,FAST_PASS2,FAST_PASS3,FAST_PASS4,FAST_PASS5,FAST_PASS6)
     //         VALUES  (:member_id,:tick_id,:tick_num,now(),:fast_pass1,:fast_pass2,:fast_pass3,:fast_pass4,:fast_pass5,:fast_pass6)";
 
 

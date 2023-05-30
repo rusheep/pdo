@@ -1,6 +1,6 @@
 <?php
 
-    include('../Lib/conn.php');
+    include('../../Lib/conn.php');
 
     //---------------------------------------------------
 
@@ -16,7 +16,7 @@
         $permissions = $data_arr['deleteMemberData']['permissions'];
 
         // 建立SQL
-        $sql = "DELETE FROM monsterdb.BACKSTAGE_MEMBER WHERE BACKSTAGE_MEMBER_ID = :member_id";
+        $sql = "DELETE FROM BACKSTAGE_MEMBER WHERE BACKSTAGE_MEMBER_ID = :member_id";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':member_id', $memberId);
         $stmt->execute();
