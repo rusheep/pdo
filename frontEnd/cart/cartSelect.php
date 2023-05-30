@@ -19,7 +19,7 @@
         
 
         // 查詢ORDER表格中 MEMBER_ID = $memberid
-       $getTick = "SELECT * FROM ORDER WHERE MEMBER_ID = $memberId AND ORDER_STATE = '購物車'";
+       $getTick = "SELECT * FROM `ORDER` WHERE MEMBER_ID = $memberId AND ORDER_STATE = '購物車'";
        $tickOrder = $pdo->query($getTick);
        $orderIds = array();
 

@@ -18,7 +18,7 @@
         $result2 = intval($stmt2->fetch(PDO::FETCH_ASSOC)['MEMBER_ID']);
         
         // 查詢ORDER
-       $query1 = "SELECT * FROM ORDER WHERE MEMBER_ID = $result2";
+       $query1 = "SELECT * FROM `ORDER` WHERE MEMBER_ID = $result2";
        $result1 = $pdo->query($query1);
        $orderIds = array();
 
