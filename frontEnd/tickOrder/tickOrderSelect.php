@@ -9,7 +9,7 @@
         $account=$_SESSION["MemberAccount"];
 
         // 用登入的帳號查詢MEMBER_ID
-        $query2 = "SELECT MEMBER_ID FROM monsterdb.MEMBER WHERE ACCOUNT = :account";
+        $query2 = "SELECT MEMBER_ID FROM MEMBER WHERE ACCOUNT = :account";
         $stmt2 = $pdo->prepare($query2);
         $stmt2->bindParam(':account', $account);
         $stmt2->execute();
@@ -18,7 +18,7 @@
         $result2 = intval($stmt2->fetch(PDO::FETCH_ASSOC)['MEMBER_ID']);
         
         // 查詢ORDER
-       $query1 = "SELECT * FROM monsterdb.ORDER WHERE MEMBER_ID = $result2";
+       $query1 = "SELECT * FROM `ORDER` WHERE MEMBER_ID = $result2";
        $result1 = $pdo->query($query1);
        $orderIds = array();
 

@@ -22,7 +22,7 @@
 
 
         // 建立SQL
-        $sql = "UPDATE monsterdb.BACKSTAGE_MEMBER
+        $sql = "UPDATE BACKSTAGE_MEMBER
         SET PURVIEW_LEVEL_ID = :permissions, ACCOUNT = :account, PASSWORD = :password
         WHERE BACKSTAGE_MEMBER_ID = :member_id";
 

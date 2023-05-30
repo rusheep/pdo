@@ -9,7 +9,7 @@
         $account=$_SESSION["MemberAccount"];
 
         // 用登入的帳號查詢MEMBER_ID
-        $getId = "SELECT MEMBER_ID FROM monsterdb.MEMBER WHERE ACCOUNT = :account";
+        $getId = "SELECT MEMBER_ID FROM MEMBER WHERE ACCOUNT = :account";
         $stmt2 = $pdo->prepare($getId);
         $stmt2->bindParam(':account', $account);
         $stmt2->execute();
@@ -19,7 +19,7 @@
         
 
         // 查詢ORDER表格中 MEMBER_ID = $memberid
-       $getTick = "SELECT * FROM monsterdb.ORDER WHERE MEMBER_ID = $memberId AND ORDER_STATE = '購物車'";
+       $getTick = "SELECT * FROM `ORDER` WHERE MEMBER_ID = $memberId AND ORDER_STATE = '購物車'";
        $tickOrder = $pdo->query($getTick);
        $orderIds = array();
 
