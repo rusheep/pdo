@@ -1,6 +1,6 @@
 <?php
 
-    include('../connect/conn.php'); 
+    include('../../Lib/conn.php');
 
     //---------------------------------------------------
 
@@ -8,20 +8,11 @@
     // echo "這是php接收到的資料" .$data;
     $data_arr = json_decode($data, true);
 
-    $ticketType = $data_arr['ticketType'];
-    $ticketDate = $data_arr['ticketDate'];
-    $ticketAmmount= $data_arr['ticketAmmount'];
-    $fastPassFacility= $data_arr['fastPassFacility'];
+    $account = $data_arr['account'];
+    $pwd = $data_arr['pwd'];
+    $permissions = $data_arr['permissions'];
 
     //建立SQL
-
-
-    // $account =htmlspecialchars( $_POST["Account"]);
-    // $pwd = htmlspecialchars( $_POST["PWD"]);
-    // $permissions = htmlspecialchars($_POST["permissions"]);
-
-    // $account = htmlspecialchars($account);
-    // $pwd = htmlspecialchars($pwd);
 
     $sql = "INSERT INTO BACKSTAGE_MEMBER (ACCOUNT, PASSWORD, PURVIEW_LEVEL_ID) VALUES (:account, :pwd, :permissions)";
 

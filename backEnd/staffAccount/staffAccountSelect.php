@@ -1,5 +1,5 @@
 <?php
-        include('../connect/conn.php');
+        include('../../Lib/conn.php');
 
        //---------------------------------------------------
 

@@ -4,12 +4,9 @@
        //---------------------------------------------------
 
        //建立SQL語法
-       $sql = "SELECT * 
-        FROM monsterdb.RIDES_QRCODE MRO
-        JOIN monsterdb.QRCODE_ORDER MQO ON MRO.RIDES_QRCODE_ID = MQO.RIDES_QRCODE_ID
-        JOIN monsterdb.MEMBER MM ON MQO.QRCODE_ORDER_ID = MM.MEMBER_ID";
+       $sql = "SELECT * FROM NEWS;";
 
-    
+       //執行並查詢，會回傳查詢結果的物件，必須使用fetch、fetchAll...等方式取得資料
         $statement = $pdo->query($sql);
 
         $data = $statement->fetchAll(PDO::FETCH_ASSOC);
