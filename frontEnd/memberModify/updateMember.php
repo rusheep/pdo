@@ -1,42 +1,38 @@
 <?php
 include('../../Lib/conn.php');
 
+session_start();
+
 $data = file_get_contents("php://input");
 $data_arr = json_decode($data, true);
 
+$id = $_SESSION['MemberAccount'];
+$email = $data_arr['emailAdd'];
 $name = $data_arr['name'];
 $birthday = $data_arr['birthDate'];
 $phone = $data_arr['phoneNum'];
-$email = $data_arr['emailAdd'];
 $address = $data_arr['address'];
 
-echo $name;
-echo $birthday;
-echo $email;
-echo $address;
-
 $sql = "UPDATE MEMBER
-        SET NAME = :name, BIRTHDAY = :birthday, PHONE = :phone,
-            EMAIL = :email, ADDRESS = :address
-        WHERE MEMBER_ID = :member_Id";
+        SET NAME = :name, BIRTHDAY = :birthDate, PHONE = :phoneNum,
+            EMAIL = :emailAdd, ADDRESS = :address
+        WHERE ACCOUNT = :id";
 
 $stmt = $pdo->prepare($sql);
 $stmt->bindParam(':name', $name);
-$stmt->bindParam(':birthday', $birthday);
-$stmt->bindParam(':phone', $phone);
-$stmt->bindParam(':email', $email);
+$stmt->bindParam(':birthDate', $birthday);
+$stmt->bindParam(':phoneNum', $phone);
+$stmt->bindParam(':emailAdd', $email);
 $stmt->bindParam(':address', $address);
-$stmt->bindParam(':member_Id', $memberId);
+$stmt->bindParam(':id', $id);
 $stmt->execute();
 
- // 回傳是否成功
-if ($stmt->rowCount() > 0) {
-  $status = array("status" => "true");
-  $json_results = json_encode($status);
-  echo $json_results;
+if ($stmt->execute()) {
+    echo "更新成功!";
 } else {
-  $status = array("status" => "false");
-  $json_results = json_encode($status);
-  echo $json_results;
+    echo "更新失败!";
 }
+
+// 現在 $id 變量與綁定參數 :id 保持一致，應該能夠解決該錯誤。
+//請確保在使用 $_SESSION['MemberAccount'] 之前，會話中已經設置了 MemberAccount 鍵，並且包含有效的值。
 ?>

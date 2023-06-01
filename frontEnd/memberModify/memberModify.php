@@ -1,14 +1,15 @@
 <?php
 include('../../Lib/conn.php');
 
-// 建立 SQL 语句
-$sql = "SELECT * FROM monsterdb.MEMBER";
+session_start();
+$id = $_SESSION['MemberAccount']; // 從中獲取會員ID
+// print_r($_SESSION);
+$sql = "SELECT * FROM MEMBER WHERE ACCOUNT = :member_id";
+$stmt = $pdo->prepare($sql);
+$stmt->bindParam(':member_id', $id);
+$stmt->execute();
 
-$statement = $pdo->query($sql);
+$data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-$data = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-$json_results = json_encode($data);
-
-echo $json_results;
+echo json_encode($data);
 ?>
