@@ -78,7 +78,7 @@
     }
 
     //寫入Session(前台專用)
-    function setMemberInfo($MemberAccount, $MemberStatus){
+    function setMemberInfo($MemberAccount, $MemberStatus,$MemberId){
 
         //先判斷session是否存在
         if(!isset($_SESSION)){
@@ -90,6 +90,8 @@
 
         //Table 'ec_member'裡的Account欄位值
         $_SESSION["MemberStatus"] = $MemberStatus; 
+
+        $_SESSION["MemberId"] = $MemberId; 
         
     }
 
