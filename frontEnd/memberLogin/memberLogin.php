@@ -23,6 +23,7 @@ $stmt->bindParam(":pwd", $pwd);
 $stmt->execute();
 
 
+
 //檢查結果
 // $num = $stmt->rowCount(); // 函式返回結果集中行的數量
 $num = $stmt->fetchAll();
@@ -32,9 +33,10 @@ if (count($num) > 0) {
   // // $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
   $memberStatus = "true";
+  $member_id = $num[0]['MEMBER_ID'];
   include("../../Lib/MemberCheck.php");
   //   //將登入資訊寫入session
-  setMemberInfo($account, $memberStatus);
+  setMemberInfo($account, $memberStatus,$member_id);
   // echo $_SESSION["MemberStatus"];
   echo "登入成功";
 } else {
