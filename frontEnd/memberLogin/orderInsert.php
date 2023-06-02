@@ -14,7 +14,6 @@ $data = json_decode(file_get_contents('php://input'), true);
 $orderData = $data['postToDBData'];
 $totalPrice = $data['total'];
 
-// 用memeberid 找orderid
 $sql = "SELECT * FROM `ORDER` WHERE MEMBER_ID = :member_id AND ORDER_STATE = '購物車'";
 $stmt = $pdo->prepare($sql);
 $stmt->bindParam(':member_id', $member_id);
