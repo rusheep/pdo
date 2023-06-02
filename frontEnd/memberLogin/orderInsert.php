@@ -13,9 +13,7 @@ $member_id = $_SESSION["MemberId"];
 $data = json_decode(file_get_contents('php://input'), true);
 $orderData = $data['postToDBData'];
 $totalPrice = $data['total'];
-// echo $orderData;
-// print_r($orderData);
-// echo $totalPrice;
+
 $sql = "SELECT * FROM `ORDER` WHERE MEMBER_ID = :member_id AND ORDER_STATE = '購物車'";
 $stmt = $pdo->prepare($sql);
 $stmt->bindParam(':member_id', $member_id);
