@@ -30,22 +30,6 @@ if ($stmt->rowCount() > 0) {
     $orderId = $result[0]['ORDER_ID'];
     // echo json_encode($result);
 
-
-    // 更新總金額
-    try {
-        // 準備並執行 SQL 語句
-        $sql = "UPDATE `ORDER` SET ORDER_PRICE = ORDER_PRICE + :totalPrice WHERE ORDER_ID = :orderId";
-        $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(':totalPrice', $totalPrice);
-        $stmt->bindParam(':orderId', $orderId);
-        $stmt->execute();
-
-        echo "金額更新成功！";
-    } catch (PDOException $e) {
-        echo "金額更新失敗：";
-    }
-
-
     //判斷是否是新增的票券 tickOrderId是否為null 如果是null insert 如果不是 則update
     foreach ($orderData as $item) {
         if ($item['TICK_ORDER_ID'] === null) {
@@ -98,7 +82,7 @@ if ($stmt->rowCount() > 0) {
             $tickPrice = $item['TOTAL_PRICE'];
 
             // 更新 TICK_ORDER 表数据
-            $sql = "UPDATE TICK_ORDER SET TICK_ID = :tick_id, TICK_NUM = :tick_num, TICK_DATE = :tick_date, FAST_PASS = :fast_pass, START_DATE = :start_date, END_DATE = :end_date,TOTAL_PRICE =:tickPrice =  WHERE TICK_ORDER_ID = :tick_order_id";
+            $sql = "UPDATE TICK_ORDER SET TICK_ID = :tick_id, TICK_NUM = :tick_num, TICK_DATE = :tick_date, FAST_PASS = :fast_pass, START_DATE = :start_date, END_DATE = :end_date,TOTAL_PRICE =:tickPrice WHERE TICK_ORDER_ID = :tick_order_id";
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(':tick_id', $tickId);
             $stmt->bindParam(':tick_num', $tickNum);
@@ -120,6 +104,21 @@ if ($stmt->rowCount() > 0) {
             }
         }
     }
+
+        // 更新總金額
+        try {
+            // 準備並執行 SQL 語句
+            $sql = "UPDATE `ORDER` SET ORDER_PRICE = ORDER_PRICE + :totalPrice WHERE ORDER_ID = :orderId";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(':totalPrice', $totalPrice);
+            $stmt->bindParam(':orderId', $orderId);
+            $stmt->execute();
+    
+            echo "金額更新成功！";
+        } catch (PDOException $e) {
+            echo "金額更新失敗：";
+        }
+    
 } else {
     echo "沒有資料";
     //新增購物車後 在加入資料
