@@ -98,7 +98,7 @@ if ($stmt->rowCount() > 0) {
             $tickPrice = $item['TOTAL_PRICE'];
 
             // 更新 TICK_ORDER 表数据
-            $sql = "UPDATE TICK_ORDER SET TICK_ID = :tick_id, TICK_NUM = :tick_num, TICK_DATE = :tick_date, FAST_PASS = :fast_pass, START_DATE = :start_date, END_DATE = :end_date,TOTAL_PRICE =:tickPrice =  WHERE TICK_ORDER_ID = :tick_order_id";
+            $sql = "UPDATE TICK_ORDER SET TICK_ID = :tick_id, TICK_NUM = :tick_num, TICK_DATE = :tick_date, FAST_PASS = :fast_pass, START_DATE = :start_date, END_DATE = :end_date,TOTAL_PRICE =:tickPrice WHERE TICK_ORDER_ID = :tick_order_id";
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(':tick_id', $tickId);
             $stmt->bindParam(':tick_num', $tickNum);
