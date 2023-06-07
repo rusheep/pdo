@@ -2,14 +2,18 @@
 include('../../Lib/conn.php');
 
 session_start();
-$id = $_SESSION['MemberAccount']; // 從中獲取會員ID
-// print_r($_SESSION);
-$sql = "SELECT * FROM MEMBER WHERE ACCOUNT = :member_id";
-$stmt = $pdo->prepare($sql);
-$stmt->bindParam(':member_id', $id);
-$stmt->execute();
 
-$data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+if (isset($_SESSION['MemberAccount'])) {
+    $phoneNum = $_SESSION['MemberAccount']; // 從會話中獲取電話號碼
+    $sql = "SELECT * FROM MEMBER WHERE PHONE = :phoneNum";
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':phoneNum', $phoneNum);
+    $stmt->execute();
 
-echo json_encode($data);
+    $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    echo json_encode($data);
+} else {
+    echo "帳號未定義";
+}
 ?>
