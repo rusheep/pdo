@@ -6,9 +6,9 @@ session_start();
 $data = file_get_contents("php://input");
 $data_arr = json_decode($data, true);
 
-$phone = $_SESSION['MemberAccount']; // 電話號碼作為條件
 
-$email = $data_arr['emailAdd'];
+$phone = $_SESSION['MemberAccount'];
+$email = $data_arr['MemberAccount'];
 $name = $data_arr['name'];
 $birthday = $data_arr['birthDate'];
 $address = $data_arr['address'];
@@ -16,7 +16,7 @@ $address = $data_arr['address'];
 $sql = "UPDATE MEMBER
         SET NAME = :name, BIRTHDAY = :birthDate,
             EMAIL = :emailAdd, ADDRESS = :address
-        WHERE PHONE = :phoneNum";
+        WHERE PHONE = :phoneNum AND EMAIL = :email";
 
 $stmt = $pdo->prepare($sql);
 $stmt->bindParam(':name', $name);
@@ -24,6 +24,7 @@ $stmt->bindParam(':birthDate', $birthday);
 $stmt->bindParam(':emailAdd', $email);
 $stmt->bindParam(':address', $address);
 $stmt->bindParam(':phoneNum', $phone);
+$stmt->bindParam(':email', $email);
 $stmt->execute();
 
 if ($stmt->rowCount() > 0) {
