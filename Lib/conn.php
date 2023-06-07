@@ -3,7 +3,7 @@
         $db_host = "127.0.0.1";
         $db_user = "root";
 
-        $db_pass = "dog3pig9";
+        $db_pass = "yo0960797";
 
 
         $db_select = "monsterdb";
