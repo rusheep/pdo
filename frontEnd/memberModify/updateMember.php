@@ -6,6 +6,7 @@ session_start();
 $data = file_get_contents("php://input");
 $data_arr = json_decode($data, true);
 
+
 $phone = $_SESSION['MemberAccount'];
 $email = $data_arr['MemberAccount'];
 $name = $data_arr['name'];
