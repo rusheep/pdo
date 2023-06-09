@@ -60,7 +60,7 @@
         }
 
         //有登入session->回傳ID，無登入session->回傳空字串""
-        return isset($_SESSION["Account"]) ? $_SESSION["Account"] : ""; 
+        return isset($_SESSION["MemberId"]) ? $_SESSION["MemberId"] : ""; 
 
     }
 
