@@ -26,10 +26,11 @@
         $orderId = $pdo->lastInsertId();
     
         // echo "新訂單已新增，訂單 ID: " . $orderId;
+        // echo "如果沒有購物車";
 
        }else {
 
-  
+        // echo "如果有購物車";
                $orderIds = array();
         
                 while ($row = $tickOrder->fetch(PDO::FETCH_ASSOC)) {

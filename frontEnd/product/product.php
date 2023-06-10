@@ -4,8 +4,8 @@ include('../../Lib/conn.php');
 //---------------------------------------------------
 
 //建立SQL語法
-$sql = "select * from monsterdb.PRODUCT p
-join monsterdb.SIZE_TABLE s
+$sql = "select * from PRODUCT p
+join SIZE_TABLE s
 on p.PRODUCT_SIZE_ID = s.SIZE_ID
 order by PRODUCT_ID;";
 
